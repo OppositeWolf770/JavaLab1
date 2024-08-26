@@ -6,13 +6,13 @@ import java.util.Map;
 public class Purse {
     private final Map<Denomination, Integer> cash = new HashMap<>();
 
-    public void add(Denomination type, int num) {
-        if (cash.containsKey(type)) {
-            cash.put(type, cash.get(type) + num);
+    public void add(Denomination denomination, int num) {
+        if (cash.containsKey(denomination)) {
+            cash.put(denomination, cash.get(denomination) + num);
             return;
         }
 
-        cash.put(type, num);
+        cash.put(denomination, num);
     }
 
     public double remove(Denomination type, int num) {

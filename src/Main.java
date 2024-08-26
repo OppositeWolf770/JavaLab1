@@ -16,6 +16,12 @@ public class Main {
             return;
         }
 
-        register.makeChange(amt);
+        var purse = register.makeChange(amt);
+
+        purse.getValue();
+
+        purse.add(new Denomination(Names.ONE_HUNDRED, 100, Forms.Bill, "NYI"), 10);
+
+        purse.getValue();
     }
 }

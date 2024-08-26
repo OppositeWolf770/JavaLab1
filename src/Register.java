@@ -3,17 +3,9 @@ public class Register {
     public Purse makeChange(double amt) {
         var purse = new Purse();
 
-        int i;
+        double new_amt = amt % 100;
 
-        for (i = 0; amt - 100 >= 0; i++) {
-
-        }
-
-        while (amt - 100 >= 0) {
-            purse.add(new Denomination("100 Note", 100, Form.Bill, "NYI"), 1);
-
-            System.out.println(amt);
-        }
+        purse.add(new Denomination(Names.ONE_HUNDRED, 100, Forms.Bill, "NYI"),((int) amt / 100));
 
 
         return purse;

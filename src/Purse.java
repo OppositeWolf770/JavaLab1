@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,22 +16,32 @@ public class Purse {
     }
 
     public double remove(Denomination type, int num) {
+        double amt = getValue();
 
-        return 0;
+        for (var denomination : cash.keySet()) {
+            cash.remove(denomination);
+        }
+
+        return amt;
     }
 
     public double getValue() {
+        var sum = BigDecimal.valueOf(0);
+
         for (var entry : cash.entrySet() ) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
+            sum = sum.add(BigDecimal.valueOf(entry.getKey().amt() * entry.getValue()));
+//            sum += entry.getKey().amt() * entry.getValue();
         }
 
-        return 0;
+//        sum = sum.setScale(2, RoundingMode.HALF_UP);
+
+//        sum = Math.floor(sum * 100) / 100;
+        System.out.println(sum);
+
+        return sum.doubleValue();
     }
 
     public String toString() {
-
-        return "";
+        return "" + getValue();
     }
-
-
 }

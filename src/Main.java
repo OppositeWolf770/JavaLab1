@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Main {
@@ -16,12 +18,12 @@ public class Main {
             return;
         }
 
-        var purse = register.makeChange(amt);
+        var purse = register.makeChange(new BigDecimal(Double.toString(amt)));
 
         purse.getValue();
 
-        purse.add(new Denomination(Names.ONE_HUNDRED, 100, Forms.Bill, "NYI"), 10);
+        System.out.println(purse);
 
-        purse.getValue();
+//        purse.remove();
     }
 }

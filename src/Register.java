@@ -1,12 +1,26 @@
-public class Register {
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-    public Purse makeChange(double amt) {
+
+public class Register {
+    public Purse makeChange(BigDecimal amt) {
         var purse = new Purse();
 
-        double new_amt = amt % 100;
+        for (var currencyValue : CurrencyValues.values()) {
+            BigDecimal new_amt = amt.remainder(new BigDecimal(currencyValue.value))
+                    .setScale(2, RoundingMode.HALF_UP);
+            int num = amt.divide(new BigDecimal(currencyValue.value), 2, RoundingMode.HALF_UP)
+                    .intValue();
 
-        purse.add(new Denomination(Names.ONE_HUNDRED, 100, Forms.Bill, "NYI"),((int) amt / 100));
 
+            if (num != 0) {
+                var form = currencyValue.value > 0 ? CurrencyValues.Forms.Bill : CurrencyValues.Forms.Coin;
+                var denomination = new Denomination(currencyValue, currencyValue.value, form, "NYI");
+                purse.add(denomination, num);
+            }
+
+            amt = new_amt;
+        }
 
         return purse;
     }

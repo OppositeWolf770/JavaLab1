@@ -1,17 +1,15 @@
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
-
 public class Register {
-    public Purse makeChange(BigDecimal amt) {
+    public Purse makeChange(double amt) {
         var purse = new Purse();
 
         for (var currencyValue : CurrencyValues.values()) {
-            BigDecimal new_amt = amt.remainder(new BigDecimal(currencyValue.value))
-                    .setScale(2, RoundingMode.HALF_UP);
-            int num = amt.divide(new BigDecimal(currencyValue.value), 2, RoundingMode.HALF_UP)
-                    .intValue();
+            // Prevent unnecessary code execution if amt is 0
+            if (amt == 0) {
+                break;
+            }
 
+            double new_amt = amt % currencyValue.value;
+            int num = (int) (amt / currencyValue.value); // The number of that bill to put in Purse
 
             if (num != 0) {
                 var form = currencyValue.value > 0 ? CurrencyValues.Forms.Bill : CurrencyValues.Forms.Coin;

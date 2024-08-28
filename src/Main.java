@@ -18,7 +18,7 @@ public class Main {
             return;
         }
 
-        var purse = register.makeChange(new BigDecimal(Double.toString(amt)));
+        var purse = register.makeChange(amt);
 
         purse.getValue();
 

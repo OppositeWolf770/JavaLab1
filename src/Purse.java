@@ -44,9 +44,6 @@ public class Purse {
             sum += entry.getKey().amt() * entry.getValue();
         }
 
-//        sum = Math.floor(sum * 100) / 100;
-        System.out.println(sum);
-
         return sum;
     }
 

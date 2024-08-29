@@ -1,9 +1,15 @@
+import edu.uca.dhoelzeman.console.Register;
+import edu.uca.dhoelzeman.gui.MakingChange;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         var register = new Register();
         var scanner = new Scanner(System.in);
+
+        // Initializes the GUI
+        MakingChange.main();
 
         double amt;
 

@@ -1,3 +1,5 @@
+package edu.uca.dhoelzeman.console;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -26,6 +28,7 @@ public class Purse {
      * @param num The number of that denomination to remove
      * @return The amount in the purse after removal of a denomination amount
      * @see Denomination
+     * @see CurrencyValues
      */
     public double remove(Denomination type, int num) {
         double amt = getValue();
@@ -47,9 +50,17 @@ public class Purse {
         return sum;
     }
 
+    /**
+     * @return The cash in the purse in an output friendly String format
+     */
     public String toString() {
+        if (getValue() == 0) {
+            return "Empty consoleClasses.Purse";
+        }
+
         StringBuilder builder = new StringBuilder();
 
+        // Loops through the denominations in the purse
         for (var denomination : cash.entrySet()) {
             var name = denomination.getKey().name();
             var num = denomination.getValue();
@@ -58,7 +69,7 @@ public class Purse {
             // Builds the registerOutput to be returned
             builder.append(num).append(" ")
                    .append(name)
-                   .append(form == CurrencyValues.Forms.Bill ? "-Dollar Note" : "")
+                   .append(form == CurrencyValues.Forms.Bill ? " Note" : "")
                    .append("\n");
         }
 

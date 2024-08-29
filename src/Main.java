@@ -1,5 +1,3 @@
-import javax.swing.*;
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +8,6 @@ public class Main {
         double amt;
 
         System.out.print("Enter amount: ");
-
         try {
             amt = scanner.nextDouble();
         } catch(Exception e) {
@@ -19,8 +16,6 @@ public class Main {
         }
 
         var purse = register.makeChange(amt);
-
-        purse.getValue();
 
         System.out.println(purse);
     }

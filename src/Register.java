@@ -16,7 +16,7 @@ public class Register {
 
             if (num != 0) {
                 var form = currencyValue.value >= 1 ? CurrencyValues.Forms.Bill : CurrencyValues.Forms.Coin;
-                var denomination = new Denomination(currencyValue, currencyValue.value, form, "NYI");
+                var denomination = new Denomination(currencyValue.name, currencyValue.value, form, "NYI");
                 purse.add(denomination, num);
             }
 

@@ -51,6 +51,20 @@ public class Purse {
     }
 
     public String toString() {
-        return "" + getValue();
+        StringBuilder builder = new StringBuilder();
+
+        for (var denomination : cash.entrySet()) {
+            var name = denomination.getKey().name();
+            var num = denomination.getValue();
+            var form = denomination.getKey().form();
+
+            // Builds the registerOutput to be returned
+            builder.append(num).append(" ")
+                   .append(name)
+                   .append(form == CurrencyValues.Forms.Bill ? "-Dollar Note" : "")
+                   .append("\n");
+        }
+
+        return builder.toString();
     }
 }

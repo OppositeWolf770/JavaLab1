@@ -1,11 +1,11 @@
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
  *
  */
 public class Purse {
-    private final Map<Denomination, Integer> cash = new HashMap<>();
+    private final Map<Denomination, Integer> cash = new LinkedHashMap<>();
 
     /** Adds the specified number of a denomination to the purse
      * @param denomination The denomination to be added (100 Note, 1 Note, Quarter)

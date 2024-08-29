@@ -8,12 +8,11 @@ public class Main {
         var register = new Register();
         var scanner = new Scanner(System.in);
 
-        // Initializes the GUI
-        MakingChange.main();
-
-        double amt;
+        // Initializes the GUI portion
+        MakingChange.initialize(register);
 
         System.out.print("Enter amount: ");
+        double amt;
         try {
             amt = scanner.nextDouble();
         } catch(Exception e) {
@@ -22,7 +21,6 @@ public class Main {
         }
 
         var purse = register.makeChange(amt);
-
         System.out.println(purse);
     }
 }

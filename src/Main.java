@@ -23,7 +23,5 @@ public class Main {
         purse.getValue();
 
         System.out.println(purse);
-
-//        purse.remove();
     }
 }

@@ -1,21 +1,22 @@
 package edu.uca.dhoelzeman.gui;
 
-import edu.uca.dhoelzeman.console.Register;
-
 import javax.swing.*;
 
 public class MakingChange {
-    private static final JFrame frame = new JFrame("Register");
+    private static JFrame frame;
 
-    public static void initialize(Register register) {
-        frame.setSize(800, 600);
+    public static void initialize() {
+        frame = new JFrame("Register");
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
 
-        var registerPanel = new RegisterPanel(register);
+        // Create the registerPanel and add it to the frame
+        var registerPanel = new RegisterPanel();
+        frame.getContentPane().add(registerPanel);
 
-        frame.add(registerPanel);
-
+        frame.pack();
         frame.setVisible(true);
     }
-
 }

@@ -9,7 +9,7 @@ public class Main {
         var scanner = new Scanner(System.in);
 
         // Initializes the GUI portion
-        MakingChange.initialize(register);
+        MakingChange.initialize();
 
         System.out.print("Enter amount: ");
         double amt;

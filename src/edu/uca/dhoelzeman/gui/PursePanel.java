@@ -8,6 +8,12 @@ import java.awt.*;
 public class PursePanel extends JPanel {
     private Purse purse;
 
+    public PursePanel() {
+        super();
+
+        this.purse = new Purse();
+    }
+
     public void paintComponent(Graphics g) {
 
     }

@@ -1,9 +1,30 @@
 package edu.uca.dhoelzeman.console;
 
+import edu.uca.dhoelzeman.gui.MakingChange;
+
+import java.util.Scanner;
+
 /**
  * Contains {@link #makeChange(double)}
  */
 public class Register {
+    public static void main(String[] args) {
+        var register = new Register();
+        var scanner = new Scanner(System.in);
+
+        System.out.print("Enter amount: ");
+        double amt;
+        try {
+            amt = scanner.nextDouble();
+        } catch(Exception e) {
+            System.out.println("Invalid input. Exiting...");
+            return;
+        }
+
+        var purse = register.makeChange(amt);
+        System.out.println(purse);
+    }
+
 
     /**
      * Converts the specified amount to their respective {@link Denomination} values

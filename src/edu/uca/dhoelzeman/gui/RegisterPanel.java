@@ -13,62 +13,63 @@ public class RegisterPanel extends JPanel {
     private JTextField input;
     private PursePanel changePanel;
 
-    public RegisterPanel() {
-        super();
+//    public RegisterPanel() {
+//        super();
+////        this.setLayout(new BorderLayout(1, 2));
+////
+////        // The register used for displaying the change
+////        register = new Register();
+////
+////        // The Input Panel
+////        inputPanel = new JPanel();
+////
+////        // Label about input panel
+////        var inputLabel = new JLabel("Enter amount");
+////        this.add(inputLabel, BorderLayout.NORTH);
+////
+////        // The Text Field
+////        input = new JTextField("0", 10);
+////        input.addActionListener(new InputListener()); // The listener that responds to the Enter key press
+////        this.add(input, BorderLayout.NORTH);
+////
+////        // The panel to show the change
+////        changePanel = new PursePanel();
+//////        changePanel.setSize(new Dimension(200, 200));
+//////        changePanel.setVisible(true);
+////        changePanel.add(new JButton("PursePanel button"));
+////        this.add(changePanel, BorderLayout.SOUTH);
+////
+////        // Adds the properties for the label
+////        this.setPreferredSize(new Dimension(800, 600));
+////        this.setBackground(Color.blue);
+//    }
 
-        // The register used for displaying the change
-        register = new Register();
-
-        // The Input Panel
-        inputPanel = new JPanel();
-
-        // The Text Field
-        input = new JTextField("0", 10);
-        input.addActionListener(new InputListener()); // The listener that responds to the Enter key press
-        this.add(input);
-
-        // The panel to show the change
-        inputPanel = new JPanel();
-        inputPanel.setPreferredSize(new Dimension(200, 200));
-        inputPanel.setBackground(Color.GREEN);
-        this.add(inputPanel);
-
-        // Adds the properties for the label
-        this.setPreferredSize(new Dimension(200, 200));
-        this.setBackground(Color.blue);
-    }
-
-    class InputListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            double amt = 0;
-            boolean validInput;
-            try {
-                amt = Double.parseDouble(e.getActionCommand());
-                validInput = true;
-            } catch (NumberFormatException numberFormatException) {
-                JOptionPane.showMessageDialog(null, "Invalid input (Double Expected)");
-                validInput = false;
-            }
-
-            // Do not process amt if conversion was not successful
-            if (!validInput) {
-                return;
-            }
-
-            register.makeChange(amt);
-
-            /*
-                TODO: Add actual register display functionality
-                and replace inputPanel with changePanel that displays
-                the coins and such returned
-             */
-            JButton button = new JButton("Click Me!");
-            button.setVisible(true);
-            inputPanel.add(button);
-
-            // Redraws the inputPanel so that it is visible when the Enter key is pressed
-            inputPanel.revalidate();
-            inputPanel.repaint();
-        }
-    }
+//    class InputListener implements ActionListener {
+//        public void actionPerformed(ActionEvent e) {
+//            double amt;
+//            try {
+//                amt = Double.parseDouble(e.getActionCommand());
+//            } catch (NumberFormatException ex) {
+//                JOptionPane.showMessageDialog(null, "Invalid input (Double Expected)");
+//                return;
+//            }
+////
+//            register.makeChange(amt);
+////
+////            /*
+////                TODO: Add actual register display functionality
+////                and replace inputPanel with changePanel that displays
+////                the coins and such returned
+////             */
+////            changePanel.removeAll();
+////
+////            JButton button = new JButton("Click Me!");
+//////            button.setVisible(true);
+////            changePanel.add(button);
+////
+////            // Redraws the inputPanel so that it is visible when the Enter key is pressed
+////            changePanel.revalidate();
+////            changePanel.repaint();
+//        }
+//    }
 }

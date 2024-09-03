@@ -9,6 +9,10 @@ import java.util.Map;
 public class Purse {
     private final Map<Denomination, Integer> cash = new LinkedHashMap<>();
 
+    public Map<Denomination, Integer> getCash() {
+        return cash;
+    }
+
     /** Adds the specified number of a denomination to the purse
      * @param denomination The denomination to be added (100 Note, 1 Note, Quarter)
      * @param num The number of that denomination to add to the purse
@@ -55,7 +59,7 @@ public class Purse {
      */
     public String toString() {
         if (getValue() == 0) {
-            return "Empty consoleClasses.Purse";
+            return "Empty Purse";
         }
 
         StringBuilder builder = new StringBuilder();

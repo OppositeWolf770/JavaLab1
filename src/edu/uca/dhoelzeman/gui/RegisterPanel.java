@@ -58,10 +58,10 @@ public class RegisterPanel extends JPanel {
                     throw new IllegalArgumentException("Amount cannot be negative");
                 }
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Invalid input (Double Expected)");
+                JOptionPane.showMessageDialog(null, "Invalid input (Double Expected)", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 

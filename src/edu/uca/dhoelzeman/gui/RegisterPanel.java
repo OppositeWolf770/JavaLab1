@@ -3,73 +3,77 @@ package edu.uca.dhoelzeman.gui;
 import edu.uca.dhoelzeman.console.Register;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RegisterPanel extends JPanel {
-    private Register register;
+    private final Register register;
     private JPanel inputPanel;
     private JTextField input;
-    private PursePanel changePanel;
+    private final PursePanel changePanel;
 
-//    public RegisterPanel() {
-//        super();
-////        this.setLayout(new BorderLayout(1, 2));
-////
-////        // The register used for displaying the change
-////        register = new Register();
-////
-////        // The Input Panel
-////        inputPanel = new JPanel();
-////
-////        // Label about input panel
-////        var inputLabel = new JLabel("Enter amount");
-////        this.add(inputLabel, BorderLayout.NORTH);
-////
-////        // The Text Field
-////        input = new JTextField("0", 10);
-////        input.addActionListener(new InputListener()); // The listener that responds to the Enter key press
-////        this.add(input, BorderLayout.NORTH);
-////
-////        // The panel to show the change
-////        changePanel = new PursePanel();
-//////        changePanel.setSize(new Dimension(200, 200));
-//////        changePanel.setVisible(true);
-////        changePanel.add(new JButton("PursePanel button"));
-////        this.add(changePanel, BorderLayout.SOUTH);
-////
-////        // Adds the properties for the label
-////        this.setPreferredSize(new Dimension(800, 600));
-////        this.setBackground(Color.blue);
-//    }
+    public RegisterPanel() {
+        super();
 
-//    class InputListener implements ActionListener {
-//        public void actionPerformed(ActionEvent e) {
-//            double amt;
-//            try {
-//                amt = Double.parseDouble(e.getActionCommand());
-//            } catch (NumberFormatException ex) {
-//                JOptionPane.showMessageDialog(null, "Invalid input (Double Expected)");
-//                return;
-//            }
-////
-//            register.makeChange(amt);
-////
-////            /*
-////                TODO: Add actual register display functionality
-////                and replace inputPanel with changePanel that displays
-////                the coins and such returned
-////             */
-////            changePanel.removeAll();
-////
-////            JButton button = new JButton("Click Me!");
-//////            button.setVisible(true);
-////            changePanel.add(button);
-////
-////            // Redraws the inputPanel so that it is visible when the Enter key is pressed
-////            changePanel.revalidate();
-////            changePanel.repaint();
-//        }
-//    }
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        // The register used for displaying the change
+        register = new Register();
+
+        // The Input Panel
+        inputPanel = new JPanel();
+
+        // Label describing the Text Field
+        var inputLabel = new JLabel("Enter amount");
+        inputPanel.add(inputLabel);
+
+
+        // The Text Field for the user to enter the amount to convert
+        input = new JTextField("", 10);
+        input.addActionListener(new InputListener()); // The listener that responds to the Enter key press
+        inputPanel.add(input);
+
+        this.add(inputPanel);
+//
+        // The panel to show the change
+        changePanel = new PursePanel();
+        changePanel.setPreferredSize(new Dimension(100, 1000));
+        this.add(changePanel);
+    }
+
+    class InputListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (changePanel == null) {
+                return;
+            }
+
+            // Get the amount entered and try to convert it to a Double
+            double amt;
+            try {
+                amt = Double.parseDouble(e.getActionCommand());
+
+                if (amt < 0) {
+                    throw new IllegalArgumentException("Amount cannot be negative");
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid input (Double Expected)");
+                return;
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+                return;
+            }
+
+            changePanel.removeAll();
+
+            // Set the purse and display the cash to the user
+            changePanel.setPurse(register.makeChange(amt));
+            changePanel.displayCash();
+
+            // Refresh window to show the changes in the purse
+            RegisterPanel.this.revalidate();
+            RegisterPanel.this.repaint();
+        }
+    }
 }

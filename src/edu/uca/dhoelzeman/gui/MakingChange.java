@@ -3,19 +3,28 @@ package edu.uca.dhoelzeman.gui;
 import javax.swing.*;
 import java.awt.*;
 
+import static edu.uca.dhoelzeman.console.CurrencyValues.base_url;
+
+/**
+ * The main class for the GUI portion of the lab.
+ * Contains the main function and sets up the
+ * frame for the program.
+ */
 public class MakingChange {
     private static JFrame frame;
 
     public static void main(String[] args) {
+        // Set up the Window for the GUI Application and
+        // configures its settings
         frame = new JFrame("Making Change");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(1000, 600));
-        frame.setIconImage(new ImageIcon("src/edu/uca/dhoelzeman/gui/images/register.png")
+        frame.setResizable(false);
+        frame.setIconImage(new ImageIcon(base_url + "register.png")
                 .getImage()
         );
 
-
-        // Add the registerPanel to the window frame
+        // Add a new instance of a RegisterPanel and add it to the frame
         var registerPanel = new RegisterPanel();
         frame.add(registerPanel);
 

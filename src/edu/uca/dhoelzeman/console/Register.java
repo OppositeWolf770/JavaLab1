@@ -11,6 +11,21 @@ import java.util.Scanner;
   * and the function to make the change for a provided Purse.
   */
 public class Register {
+    public static final String base_url = "src/images/";
+
+    public static final Denomination HUNDRED = new Denomination("Hundred-Dollar", 100, Forms.Bill, base_url + "Hundred-Dollar.png"),
+                                     FIFTY = new Denomination("Fifty-Dollar", 50, Forms.Bill, base_url + "Fifty-Dollar.png"),
+                                     TWENTY = new Denomination("Twenty-Dollar", 20, Forms.Bill, base_url + "Twenty-Dollar.png"),
+                                     TEN = new Denomination("Ten-Dollar", 10, Forms.Bill, base_url + "Ten-Dollar.png"),
+                                     FIVE = new Denomination("Five-Dollar", 5, Forms.Bill, base_url + "Five-Dollar.png"),
+                                     ONE = new Denomination("One-Dollar", 1, Forms.Bill, base_url + "One-Dollar.png"),
+                                     QUARTER = new Denomination("Quarter", 0.25, Forms.Coin, base_url + "Quarter.png"),
+                                     DIME = new Denomination("Dime", 0.10, Forms.Coin, base_url + "Dime.png"),
+                                     NICKEL = new Denomination("Nickel", 0.05, Forms.Coin, base_url + "Nickel.png"),
+                                     PENNY = new Denomination("Penny", 0.01, Forms.Coin, base_url + "Penny.png");
+
+    private final Denomination[] denominations = {HUNDRED, FIFTY, TWENTY, TEN, FIVE, ONE, QUARTER, DIME, NICKEL, PENNY};
+
     public static void main(String[] args) {
         var register = new Register();
         var scanner = new Scanner(System.in);
@@ -18,7 +33,7 @@ public class Register {
         // Get user input
         System.out.print("Enter amount: ");
 
-        // Attempt to assign console input to amt
+        // Attempt to assign console input to value
         double amt;
         try {
             amt = scanner.nextDouble();
@@ -51,22 +66,22 @@ public class Register {
                 .setScale(2, RoundingMode.HALF_UP)
                 .doubleValue();
 
-        amount *= 100; // Convert amt to all cents for easier calculations
+        amount *= 100; // Convert value to all cents for easier calculations
 
         // Loops through each CurrencyValue and gets the correct amount of that denomination to add to the purse
-        for (var currencyValue : CurrencyValues.values()) {
-            // Prevent unnecessary code execution if amt is less than a Penny
-            if (amount < CurrencyValues.PENNY.value) {
+        for (var denomination : denominations) {
+            // Prevent unnecessary code execution if value is less than a Penny
+            if (amount < PENNY.value() * 100) {
                 break;
             }
 
-            // currencyValue.value is converted to cents to be used in calculations
-            double remainingAmount = amount % (currencyValue.value * 100);
-            int num = (int) (amount / (currencyValue.value * 100)); // The number of that bill to put in Purse
+            // denomination.value is converted to cents to be used in calculations
+            double remainingAmount = amount % (denomination.value() * 100);
+            int num = (int) (amount / (denomination.value() * 100)); // The number of that bill to put in Purse
 
             // Add the denomination to the purse if num != 0
             if (num != 0) {
-                var denomination = new Denomination(currencyValue.name, currencyValue.value, currencyValue.form, currencyValue.img);
+//                var denomination = new Denomination(denomination.name, denomination.value, denomination.form, denomination.img);
                 purse.add(denomination, num);
             }
 

@@ -1,6 +1,6 @@
 package edu.uca.dhoelzeman.gui;
 
-import edu.uca.dhoelzeman.console.CurrencyValues;
+import edu.uca.dhoelzeman.console.Forms;
 import edu.uca.dhoelzeman.console.Purse;
 import edu.uca.dhoelzeman.console.Denomination;
 
@@ -44,7 +44,7 @@ public class PursePanel extends JPanel {
                     denomination.getValue()
                             + " "
                             + denomination.getKey().name()
-                            + (denomination.getKey().form() == CurrencyValues.Forms.Bill ? " Bills" : "")
+                            + (denomination.getKey().form() == Forms.Bill ? " Bills" : "")
                     )
             );
 
@@ -70,7 +70,7 @@ public class PursePanel extends JPanel {
     // Takes a denomination and returns the scaled down image of that denomination
     private static ImageIcon getImageIcon(Map.Entry<Denomination, Integer> denomination) {
         return scaleImageIcon(denomination.getKey().img(),
-                              denomination.getKey().form() == CurrencyValues.Forms.Bill ? 100 : 50,
+                              denomination.getKey().form() == Forms.Bill ? 100 : 50,
                               50);
     }
 

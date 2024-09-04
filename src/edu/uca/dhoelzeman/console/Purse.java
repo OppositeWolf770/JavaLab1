@@ -57,7 +57,7 @@ public class Purse {
         // Loops through each denomination and adds its value to the sum
         // according to the amount of that denomination in the purse
         for (var entry : getCash().entrySet() ) {
-            sum += entry.getKey().amt() * entry.getValue();
+            sum += entry.getKey().value() * entry.getValue();
         }
 
         return sum;
@@ -82,7 +82,7 @@ public class Purse {
             // variables to make the string builder more readable
             final String name = denomination.getKey().name();
             final int num = denomination.getValue();
-            final String formMsg = denomination.getKey().form() == CurrencyValues.Forms.Bill ? " Note" : "";
+            final String formMsg = denomination.getKey().form() == Forms.Bill ? " Note" : "";
 
             // Builds the registerOutput to be returned
             purseContents.append(num).append(" ")

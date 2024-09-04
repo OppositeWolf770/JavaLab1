@@ -1,9 +1,9 @@
 package edu.uca.dhoelzeman.gui;
 
+import edu.uca.dhoelzeman.console.Register;
+
 import javax.swing.*;
 import java.awt.*;
-
-import static edu.uca.dhoelzeman.console.CurrencyValues.base_url;
 
 /**
  * The main class for the GUI portion of the lab.
@@ -20,7 +20,7 @@ public class MakingChange {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(1000, 600));
         frame.setResizable(false);
-        frame.setIconImage(new ImageIcon(base_url + "register.png")
+        frame.setIconImage(new ImageIcon(Register.base_url + "register.png")
                 .getImage()
         );
 

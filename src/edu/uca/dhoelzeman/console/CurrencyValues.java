@@ -6,9 +6,6 @@ package edu.uca.dhoelzeman.console;
  *
  * Using this enum allows for modular addition and deletion of {@link Denomination}
  * values in the future easily.
- * @see Register
- * @see Register#makeChange(double)
- * @see Purse
  */
 public enum CurrencyValues {
     HUNDRED("Hundred-Dollar", 100, Forms.Bill),
@@ -27,23 +24,22 @@ public enum CurrencyValues {
         Coin
     }
 
+    // Contains the images directory for all the denominations
+    public static final String base_url = "src/edu/uca/dhoelzeman/gui/images/";
+
+    // The data about the specific Denomination
     public final double value;
     public final String name;
     public final Forms form;
+    public final String img;
 
     /**
-     * Constructs the denomination value as specified above
-     *
-     * @see String
-     * @see Forms
-     *
-     * @param name The {@link String} representation of the denomination
-     * @param value The currency value of the denomination (Real-world value)
-     * @param form The type of denomination, {@link Forms#Bill} or {@link Forms#Coin}
+     * Constructs the denomination using the values provided
      */
     CurrencyValues(String name, double value, Forms form) {
         this.name = name;
         this.value = value;
         this.form = form;
+        this.img = base_url + name + ".png";
     }
 }

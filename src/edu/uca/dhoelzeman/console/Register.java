@@ -68,7 +68,7 @@ public class Register {
 
         amount *= 100; // Convert value to all cents for easier calculations
 
-        // Loops through each CurrencyValue and gets the correct amount of that denomination to add to the purse
+        // Loops through each denomination and gets the correct amount of that denomination to add to the purse
         for (var denomination : denominations) {
             // Prevent unnecessary code execution if value is less than a Penny
             if (amount < PENNY.value() * 100) {
@@ -81,7 +81,6 @@ public class Register {
 
             // Add the denomination to the purse if num != 0
             if (num != 0) {
-//                var denomination = new Denomination(denomination.name, denomination.value, denomination.form, denomination.img);
                 purse.add(denomination, num);
             }
 
